@@ -5,6 +5,8 @@ import UpdateOrder from './UpdateOrder';
 
 class Main extends React.Component {
 
+    // Unique ID field is used to simulate database auto-increment ID
+    // used for identifying when updating or deleting items
     constructor() {
         super();
         const list = JSON.parse(localStorage.getItem('list'));
@@ -27,6 +29,7 @@ class Main extends React.Component {
         this.isChanging = this.isChanging.bind(this);
     }
 
+    // Clear local storage and add sample data
     addSampleData() {
         this.setState({
             list: [
@@ -40,6 +43,7 @@ class Main extends React.Component {
         }, () => { this.saveToStorage(this.state.uniqueId, this.state.list) })
     }
 
+    // remove item and save to storage
     deleteOrder(id) {
         const newList = this.state.list.filter(i => i.id !== id);
         this.setState({ list: newList });
@@ -53,6 +57,9 @@ class Main extends React.Component {
         this.setState({ [name]: value });
     };
 
+    // process add order form submit and reset input field (state)
+    // validate input if empty or price is negative
+    // initiates list array and uniqueId as 0 if local storage is empty
     addOrder(e) {
         e.preventDefault();
         if (this.state.name && this.state.price && this.state.price >= 0) {
@@ -78,6 +85,7 @@ class Main extends React.Component {
         }
     };
 
+    // updates input field with selected item
     changeOrder(item) {
         this.isChanging(true);
         this.setState({
@@ -88,12 +96,17 @@ class Main extends React.Component {
         })
     }
 
+    // switch for create or update item input fields and buttons
     isChanging(bool) {
         this.setState({
             update: bool
         })
     }
 
+    // process update order form submit
+    // parseInt removes leading 0 padding (simulating real price)
+    // saves new list to local storage and resets input field by resetting state
+    // if input validation fails, shows failed feedback to user by setting validation state to false
     updateOrder(e) {
         e.preventDefault();
         if (this.state.name && this.state.price && this.state.price >= 0) {

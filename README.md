@@ -1,68 +1,28 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Example Order App
 
-## Available Scripts
+App created to fulfill order simulation
 
-In the project directory, you can run:
+## Design notes
 
-### `npm start`
+- Uses unique ID to simulate database auto-increment function, deleting and creating items will not clash IDs (duplication).
+- Reset local storage and add sample data button for testing ease.
+- Simple data validation check if  `name` or `price` is empty or if `price` is negative, `note` is optional.
+- `note` field is multi-line input and line break is recorded.
+- Data is stored as array of objects, stringified and parsed as JSON for RESTful API structure.
+- Data deletion or update confirmation can be added to prevent user accidental click (not added here for easy testing)
+- Undo delete can also be implemented if user regrets, data stored in state and local storage only updated after a certain amount of time.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Requirements
+### features
+- Build a frontend app with react in JavaScript.
+- An order should include two required fields, `name`(text) and `price`(number). And one multi-line text optional field `note`.
+- A list page to show all orders.
+- The user can create a new order from the list page.
+- The user can edit and delete the order at the list page.
+- Upload the source code to GitHub, Bitbucket or other services. And make sure we can access the project.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+### Notes
+- You can store data at the local storage.
+- You can use any vendor packages.
+- We don't need the API server.
+- Please build a good architecture to integrate with RESTful APIs. Maybe we just change some code, this app will be work with API server.

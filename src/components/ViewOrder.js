@@ -10,7 +10,7 @@ class ViewOrder extends React.Component {
                 return (<tr key={i}>
                     <th scope="row">{i + 1}</th>
                     <td>{item.name}</td>
-                    <td>{item.price}</td>
+                    <td>$ {item.price}</td>
                     <td className="note">{item.note}</td>
                     <td><button type="button" className="btn btn-outline-primary" onClick={() => this.props.changeOrder(item)}>Edit</button></td>
                     <td><button type="button" className="btn btn-outline-danger" onClick={() => this.props.deleteOrder(item.id)}>Delete</button></td>
@@ -22,7 +22,7 @@ class ViewOrder extends React.Component {
                     <tr>
                         <th scope="col">Order #</th>
                         <th scope="col">Name</th>
-                        <th scope="col">Price</th>
+                        <th scope="col">Price ($)</th>
                         <th scope="col">Note</th>
                         <th scope="col">Edit</th>
                         <th scope="col">Delete</th>
