@@ -12,8 +12,24 @@ class ViewOrder extends React.Component {
                     <td>{item.name}</td>
                     <td>$ {item.price}</td>
                     <td className="note">{item.note}</td>
-                    <td><button type="button" className="btn btn-outline-primary" onClick={() => this.props.changeOrder(item)}>Edit</button></td>
-                    <td><button type="button" className="btn btn-outline-danger" onClick={() => this.props.deleteOrder(item.id)}>Delete</button></td>
+                    <td>
+                        <button
+                            type="button"
+                            className="btn btn-outline-primary"
+                            onClick={() => this.props.changeOrder(item)}
+                        >
+                            Edit
+                        </button>
+                    </td>
+                    <td>
+                        <button
+                            type="button"
+                            className="btn btn-outline-danger"
+                            onClick={() => this.props.deleteOrder(item.id)}
+                        >
+                            Delete
+                        </button>
+                    </td>
                 </tr>)
             });
 

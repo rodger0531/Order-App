@@ -63,6 +63,7 @@ class Main extends React.Component {
     addOrder(e) {
         e.preventDefault();
         if (this.state.name && this.state.price && this.state.price >= 0) {
+
             let list = JSON.parse(localStorage.getItem('list')) || [];
             let uniqueId = JSON.parse(localStorage.getItem('uniqueId')) + 1 || 1;
             const newItem = {
@@ -71,8 +72,10 @@ class Main extends React.Component {
                 price: this.state.price,
                 note: this.state.note
             }
+
             list.push(newItem);
             this.saveToStorage(uniqueId, list);
+            
             this.setState({
                 list: list,
                 name: '',
@@ -110,13 +113,18 @@ class Main extends React.Component {
     updateOrder(e) {
         e.preventDefault();
         if (this.state.name && this.state.price && this.state.price >= 0) {
+
             const updatedItem = {
                 id: this.state.id,
                 name: this.state.name,
-                price: parseInt(this.state.price,10),
+                price: parseInt(this.state.price, 10),
                 note: this.state.note
             }
-            const newList = this.state.list.map((item) => (item.id === this.state.id ? updatedItem : item));
+            
+            const newList = this.state.list.map((item) =>
+                item.id === this.state.id ? updatedItem : item
+            );
+
             localStorage.setItem('list', JSON.stringify(newList));
             this.setState({
                 list: newList,
@@ -126,6 +134,7 @@ class Main extends React.Component {
                 note: '',
                 validation: true
             });
+
             this.isChanging(false);
         } else {
             this.setState({ validation: false })
@@ -144,11 +153,30 @@ class Main extends React.Component {
             <main role="main" className="inner cover">
                 <button className="btn btn-warning" onClick={this.addSampleData.bind(this)}>Reset and add sample orders</button>
                 {this.state.update ? (
-                    <UpdateOrder name={this.state.name} price={this.state.price} note={this.state.note} validation={this.state.validation} handleChange={this.handleChange} updateOrder={this.updateOrder} isChanging={this.isChanging} />
+                    <UpdateOrder
+                        name={this.state.name}
+                        price={this.state.price}
+                        note={this.state.note}
+                        validation={this.state.validation}
+                        handleChange={this.handleChange}
+                        updateOrder={this.updateOrder}
+                        isChanging={this.isChanging}
+                    />
                 ) : (
-                        <CreateOrder name={this.state.name} price={this.state.price} note={this.state.note} validation={this.state.validation} handleChange={this.handleChange} addOrder={this.addOrder} />
+                        <CreateOrder
+                            name={this.state.name}
+                            price={this.state.price}
+                            note={this.state.note}
+                            validation={this.state.validation}
+                            handleChange={this.handleChange}
+                            addOrder={this.addOrder}
+                        />
                     )}
-                <ViewOrder list={this.state.list} deleteOrder={this.deleteOrder} changeOrder={this.changeOrder} />
+                <ViewOrder
+                    list={this.state.list}
+                    deleteOrder={this.deleteOrder}
+                    changeOrder={this.changeOrder}
+                />
             </main>
         );
     }
