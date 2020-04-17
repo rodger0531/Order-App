@@ -21,12 +21,6 @@ class Main extends React.Component {
             update: false,
             validation: true
         }
-        this.deleteOrder = this.deleteOrder.bind(this);
-        this.handleChange = this.handleChange.bind(this);
-        this.addOrder = this.addOrder.bind(this);
-        this.changeOrder = this.changeOrder.bind(this);
-        this.updateOrder = this.updateOrder.bind(this);
-        this.isChanging = this.isChanging.bind(this);
     }
 
     // Clear local storage and add sample data
@@ -44,13 +38,13 @@ class Main extends React.Component {
     }
 
     // remove item and save to storage
-    deleteOrder(id) {
+    deleteOrder = id => {
         const newList = this.state.list.filter(i => i.id !== id);
         this.setState({ list: newList });
         localStorage.setItem('list', JSON.stringify(newList));
     }
 
-    handleChange(event) {
+    handleChange = event => {
         const input = event.target;
         const value = input.value;
         const name = input.name;
@@ -60,7 +54,7 @@ class Main extends React.Component {
     // process add order form submit and reset input field (state)
     // validate input if empty or price is negative
     // initiates list array and uniqueId as 0 if local storage is empty
-    addOrder(e) {
+    addOrder = e => {
         e.preventDefault();
         if (this.state.name && this.state.price && this.state.price >= 0) {
 
@@ -89,7 +83,7 @@ class Main extends React.Component {
     };
 
     // updates input field with selected item
-    changeOrder(item) {
+    changeOrder = item => {
         this.isChanging(true);
         this.setState({
             id: item.id,
@@ -100,7 +94,7 @@ class Main extends React.Component {
     }
 
     // switch for create or update item input fields and buttons
-    isChanging(bool) {
+    isChanging = bool => {
         this.setState({
             update: bool
         })
@@ -110,7 +104,7 @@ class Main extends React.Component {
     // parseInt removes leading 0 padding (simulating real price)
     // saves new list to local storage and resets input field by resetting state
     // if input validation fails, shows failed feedback to user by setting validation state to false
-    updateOrder(e) {
+    updateOrder = e => {
         e.preventDefault();
         if (this.state.name && this.state.price && this.state.price >= 0) {
 
