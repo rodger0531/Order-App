@@ -16,15 +16,15 @@ class Main extends React.Component {
             name: '',
             price: '',
             note: '',
-            list: (list ? list : []),
-            uniqueId: (uniqueId ? uniqueId : 0),
+            list: (list || []),
+            uniqueId: (uniqueId || 0),
             update: false,
             validation: true
         }
     }
 
     // Clear local storage and add sample data
-    addSampleData() {
+    addSampleData = () => {
         this.setState({
             list: [
                 { 'id': 1, 'name': 'Sony', 'price': '100', 'note': 'TV' },
@@ -145,7 +145,7 @@ class Main extends React.Component {
     render() {
         return (
             <main role="main" className="inner cover">
-                <button className="btn btn-warning" onClick={this.addSampleData.bind(this)}>Reset and add sample orders</button>
+                <button className="btn btn-warning" onClick={this.addSampleData}>Reset and add sample orders</button>
                 {this.state.update ? (
                     <UpdateOrder
                         name={this.state.name}
@@ -157,15 +157,15 @@ class Main extends React.Component {
                         isChanging={this.isChanging}
                     />
                 ) : (
-                        <CreateOrder
-                            name={this.state.name}
-                            price={this.state.price}
-                            note={this.state.note}
-                            validation={this.state.validation}
-                            handleChange={this.handleChange}
-                            addOrder={this.addOrder}
-                        />
-                    )}
+                    <CreateOrder
+                        name={this.state.name}
+                        price={this.state.price}
+                        note={this.state.note}
+                        validation={this.state.validation}
+                        handleChange={this.handleChange}
+                        addOrder={this.addOrder}
+                    />
+                )}
                 <ViewOrder
                     list={this.state.list}
                     deleteOrder={this.deleteOrder}
